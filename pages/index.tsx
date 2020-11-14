@@ -1,6 +1,9 @@
 import { FC } from 'react'
 import styled from 'styled-components'
 
+const Container = styled.div`
+`
+
 const Title = styled.h1`
   font-size: 24px;
   font-weight: 400;
@@ -8,9 +11,9 @@ const Title = styled.h1`
 
 const Home: FC = () => {
   return (
-  <div>
+  <Container>
     <Title>Hello World</Title>
-  </div>
+  </Container>
   )
 }
 

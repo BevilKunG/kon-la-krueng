@@ -13,7 +13,8 @@
   "scripts": {
     "start": "next start",
     "dev": "next dev",
-    "build": "next build"
+    "build": "next build",
+    "export": "next export"
   },
   "devDependencies": {
     "@types/node": "^14.14.7",
