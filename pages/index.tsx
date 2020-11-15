@@ -5,14 +5,15 @@ const Container = styled.div`
 `
 
 const Title = styled.h1`
+  font-family: 'IBM Plex Sans Thai';
   font-size: 24px;
-  font-weight: 400;
 `
 
 const Home: FC = () => {
   return (
   <Container>
-    <Title>Hello World</Title>
+    <Title>สวัสดี</Title>
+    <h1>สวัสดี</h1>
   </Container>
   )
 }
