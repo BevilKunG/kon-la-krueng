@@ -6,17 +6,17 @@ import { createGlobalStyle } from 'styled-components'
 const GlobalFont = createGlobalStyle`
   @font-face {
     font-family: 'IBM Plex Sans Thai Bold';
-    src: url('/fonts/IBMPlexSansThai-Bold.woff2') format('woff2');
+    src: url('${process.env.NEXT_PUBLIC_BASE_PATH}/fonts/IBMPlexSansThai-Bold.woff2') format('woff2');
   }
 
   @font-face {
     font-family: 'IBM Plex Sans Thai SemiBold';
-    src: url('/fonts/IBMPlexSansThai-SemiBold.woff2') format('woff2');
+    src: url('${process.env.NEXT_PUBLIC_BASE_PATH}/fonts/IBMPlexSansThai-SemiBold.woff2') format('woff2');
   }
 
   @font-face {
     font-family: 'IBM Plex Sans Thai';
-    src: url('/fonts/IBMPlexSansThai-Regular.woff2') format('woff2');
+    src: url('${process.env.NEXT_PUBLIC_BASE_PATH}/fonts/IBMPlexSansThai-Regular.woff2') format('woff2');
   }
 `
 

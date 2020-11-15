@@ -1,4 +1,4 @@
 module.exports = {
-  basePath: process.env.NODE_ENV === 'production' ? '/kon-la-krueng' : '',
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/kon-la-krueng/' : '/',
+  basePath: process.env.NEXT_PUBLIC_BASE_PATH,
+  assetPrefix: '/kon-la-krueng/',
 }
