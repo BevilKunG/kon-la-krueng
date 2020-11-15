@@ -18,7 +18,6 @@ const GlobalFont = createGlobalStyle`
     font-family: 'IBM Plex Sans Thai';
     src: url('/fonts/IBMPlexSansThai-Regular.woff2') format('woff2');
   }
-
 `
 
 const App: FC<AppProps> = ({ Component, pageProps }) => {
