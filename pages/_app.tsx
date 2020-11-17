@@ -1,4 +1,5 @@
 import { AppProps } from 'next/app'
+import Head from 'next/head'
 import { FC } from 'react'
 import { createGlobalStyle } from 'styled-components'
 
@@ -35,6 +36,9 @@ const GlobalFont = createGlobalStyle`
 const App: FC<AppProps> = ({ Component, pageProps }) => {
   return (
     <>
+      <Head>
+        <title>คนละครึ่ง</title>
+      </Head>
       <GlobalStyle />
       <GlobalFont />
       <Component {...pageProps} />

@@ -5,7 +5,6 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <title>คนละครึ่ง</title>
           <link
             rel="icon"
             href={`${process.env.NEXT_PUBLIC_BASE_PATH}/images/halfhalf-logo-mini.png`}
