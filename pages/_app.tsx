@@ -1,7 +1,14 @@
 import { AppProps } from 'next/app'
 import { FC } from 'react'
-import Layout from '../components/Layout'
 import { createGlobalStyle } from 'styled-components'
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    min-width: 1024px;
+    margin: 0;
+    font-family: 'IBM Plex Sans Thai', sans-serif;
+  }
+`
 
 const GlobalFont = createGlobalStyle`
   @font-face {
@@ -22,10 +29,11 @@ const GlobalFont = createGlobalStyle`
 
 const App: FC<AppProps> = ({ Component, pageProps }) => {
   return (
-    <Layout>
+    <>
+      <GlobalStyle />
       <GlobalFont />
       <Component {...pageProps} />
-    </Layout>
+    </>
   )
 }
 
