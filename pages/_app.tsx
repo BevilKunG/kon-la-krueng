@@ -5,8 +5,13 @@ import { createGlobalStyle } from 'styled-components'
 const GlobalStyle = createGlobalStyle`
   body {
     min-width: 1024px;
+    min-height: 100vh;
     margin: 0;
     font-family: 'IBM Plex Sans Thai', sans-serif;
+    background: url('${process.env.NEXT_PUBLIC_BASE_PATH}/images/result-bg.png');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
   }
 `
 

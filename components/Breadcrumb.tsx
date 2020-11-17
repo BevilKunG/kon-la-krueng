@@ -4,7 +4,6 @@ import styled from 'styled-components'
 
 const Container = styled.div`
   background-color: #27397c;
-  width: 100vw;
   padding: 0.625rem 6.5rem;
 
   & a, span, p {
