@@ -1,4 +1,6 @@
-import { FC } from 'react'
+import { FC, useContext } from 'react'
+import { FilterContext } from '../lib/FilterContext'
+import { FilterCard } from './Filter'
 import styled from 'styled-components'
 
 const Container = styled.div`
@@ -18,11 +20,15 @@ const Grid = styled.div`
 
 const Content: FC<any> = ({ data }) => {
   const { merchants, ...filters } = data
+  const { state } = useContext(FilterContext)
+  const { category } = state
   console.log(merchants, filters)
   return (
     <Container>
-      <Title>ผลการค้นหาทั้งหมด</Title>
-      <Grid></Grid>
+      <Title>ผลการค้นหา{!category ? ' ' : ` ${category} `}ทั้งหมด</Title>
+      <Grid>
+        <FilterCard {...{ filters }} />
+      </Grid>
     </Container>
   )
 }
