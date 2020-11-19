@@ -1,21 +1,26 @@
-import { FC } from 'react'
-import styled from 'styled-components'
+import { NextPage, GetStaticProps } from 'next'
+import { Navbar, Breadcrumb, Content } from '../components'
+import { FilterProvider } from '../lib/FilterContext'
 
-const Container = styled.div`
-`
-
-const Title = styled.h1`
-  font-family: 'IBM Plex Sans Thai';
-  font-size: 24px;
-`
-
-const Home: FC = () => {
+const IndexPage: NextPage<any> = ({ data }) => {
+  const { merchants, ...filters } = data
   return (
-  <Container>
-    <Title>สวัสดี</Title>
-    <h1>สวัสดี</h1>
-  </Container>
+    <FilterProvider>
+      <Navbar {...{ filters }} />
+      <Breadcrumb />
+      <Content {...{ data }} />
+    </FilterProvider>
   )
 }
 
-export default Home
+export const getStaticProps: GetStaticProps = async () => {
+  const res = await fetch('https://panjs.com/ywc18.json')
+  const data = await res.json()
+  return {
+    props: {
+      data,
+    },
+  }
+}
+
+export default IndexPage
