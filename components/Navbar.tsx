@@ -11,7 +11,8 @@ const Container = styled.div`
 const Logo = styled.img`
 `
 
-const Navbar: FC = () => {
+const Navbar: FC<any> = ({ filters }) => {
+  console.log(filters)
   return (
     <Container>
       <Logo src={`${process.env.NEXT_PUBLIC_BASE_PATH}/images/halfhalf-logo.png`} />

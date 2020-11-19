@@ -38,8 +38,10 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
       <Head>
         <title>คนละครึ่ง</title>
       </Head>
+
       <GlobalStyle />
       <GlobalFont />
+
       <Component {...pageProps} />
     </>
   )

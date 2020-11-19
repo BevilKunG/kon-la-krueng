@@ -11,7 +11,6 @@ interface ILayOutProp {
 const Layout: FC<ILayOutProp> = ({ children }) => {
   return (
     <Container>
-      <Navbar />
       {children}
     </Container>
   )
