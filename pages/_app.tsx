@@ -5,7 +5,6 @@ import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
   body {
-    min-width: 1024px;
     min-height: 100vh;
     margin: 0;
     font-family: 'IBM Plex Sans Thai', sans-serif;
