@@ -5,7 +5,7 @@ import styled from 'styled-components'
 const Title = styled.h1`
   font-family: 'IBM Plex Sans Thai SemiBold';
   font-size: 16px;
-  letter-spacing: -0.02rem;
+  letter-spacing: -0.02em;
 `
 
 const OptionRadio = styled.div`
@@ -42,7 +42,7 @@ const SubcategoryFilter: FC<any> = ({ subcategories }) => {
         </label>
 
         {subcategories[state.category].map((subcategory) => (
-          <label key={subcategory}>
+          <label key={`subcategory-${subcategory}`}>
             <input
               type="radio"
               name="subcategory"
