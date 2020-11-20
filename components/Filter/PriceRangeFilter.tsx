@@ -1,6 +1,7 @@
 import { FC, useContext, ChangeEvent } from 'react'
 import { FilterContext } from '../../lib/FilterContext'
 import styled from 'styled-components'
+import { Range } from '../../lib/types'
 
 const Title = styled.h1`
   font-family: 'IBM Plex Sans Thai SemiBold';
@@ -12,7 +13,11 @@ const Select = styled.select`
   width: 100%;
 `
 
-const PriceRangeFilter: FC<any> = ({ priceRange }) => {
+interface IPriceRangeFilterProp {
+  priceRange: Range[]
+}
+
+const PriceRangeFilter: FC<IPriceRangeFilterProp> = ({ priceRange }) => {
   const { dispatch } = useContext(FilterContext)
   const handleProvince = (e: ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value !== 'all' ? e.target.value : null

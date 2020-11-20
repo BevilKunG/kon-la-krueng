@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import { MerchantCard } from './'
 import styled from 'styled-components'
+import { Merchant } from '../../lib/types'
 
 const Container = styled.div`
   flex: 1;
@@ -28,9 +29,11 @@ const NotFoundSubtitle = styled.p`
   margin-top: 1rem;
 `
 
+interface IMerchantList {
+  merchants: Merchant[]
+}
 
-
-const MerchantList: FC<any> = ({ merchants }) => {
+const MerchantList: FC<IMerchantList> = ({ merchants }) => {
   return (
     <Container>
       {merchants.length !== 0 ? merchants.map((merchant) => (

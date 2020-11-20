@@ -1,6 +1,7 @@
 import { FC, useContext, ChangeEvent } from 'react'
 import { FilterContext } from '../../lib/FilterContext'
 import styled from 'styled-components'
+import { Data } from '../../lib/types'
 
 const Title = styled.h1`
   font-family: 'IBM Plex Sans Thai SemiBold';
@@ -19,7 +20,11 @@ const RadioLabel = styled.span`
   font-size: 14px;
 `
 
-const CategoryFilter: FC<any> = ({ categories }) => {
+interface ICategoryFilterProp {
+  categories: string[]
+}
+
+const CategoryFilter: FC<ICategoryFilterProp> = ({ categories }) => {
   const { state, dispatch } = useContext(FilterContext)
   const handleCategory = (e: ChangeEvent<HTMLInputElement>) => {
     let category = e.target.value !== 'all' ? e.target.value : null

@@ -1,6 +1,7 @@
 import { FC, useContext, ChangeEvent } from 'react'
 import { FilterContext } from '../../lib/FilterContext'
 import styled from 'styled-components'
+import { Province } from '../../lib/types'
 
 const Title = styled.h1`
   font-family: 'IBM Plex Sans Thai SemiBold';
@@ -12,7 +13,11 @@ const Select = styled.select`
   width: 100%;
 `
 
-const ProvinceFilter: FC<any> = ({ provinces }) => {
+interface IProvinceFilterProp {
+  provinces: Province[]
+}
+
+const ProvinceFilter: FC<IProvinceFilterProp> = ({ provinces }) => {
   const { state, dispatch } = useContext(FilterContext)
   const handleProvince = (e: ChangeEvent<HTMLSelectElement>) => {
     const province = e.target.value
