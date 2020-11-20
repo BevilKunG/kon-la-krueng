@@ -1,7 +1,7 @@
 import { FC, useContext } from 'react'
 import { FilterContext } from '../lib/FilterContext'
-import { FilterCard } from './Filter'
-import MerchantList from './MerchantList'
+import { FilterCard, FilterSide } from './Filter'
+import { MerchantList } from './Merchant'
 import styled from 'styled-components'
 
 const Container = styled.div`
@@ -29,7 +29,7 @@ const Flex = styled.div`
 const Content: FC<any> = ({ data }) => {
   const { merchants, ...filters } = data
   const { state } = useContext(FilterContext)
-  const { category } = state
+  const { category, search } = state
 
   const { categories } = filters
   const subcategories = {}
@@ -37,27 +37,71 @@ const Content: FC<any> = ({ data }) => {
     ({ name, subcategories: value }) => (subcategories[name] = value)
   )
 
-  const filterMerchant = (merchants, filters) => {
-    let filtered = merchants
-    if (filters.category) {
-      filtered = filtered.filter((merchant) => subcategories[filters.category].includes(merchant.subcategoryName))
+  const filteredMerchants = merchants.filter((merchant) => {
+    const categoryFilter = state.category
+      ? subcategories[state.category].includes(merchant.subcategoryName)
+      : true
+
+    const subcategoryFilter = state.subcategory
+      ? merchant.subcategoryName === state.subcategory
+      : true
+
+    const provinceFilter =
+      state.province &&
+      !['พื้นที่ใกล้ฉัน', 'สถานที่ทั้งหมด'].includes(state.province)
+        ? merchant.addressProvinceName === state.province
+        : true
+
+    const priceRangeFilter = state.priceLevel
+      ? merchant.priceLevel === state.priceLevel
+      : true
+
+    const check = (value) => {
+      return value.toString().toLowerCase().includes(state.search.toLowerCase())
     }
 
-    if (filters.subcategory) {
-      filtered = filtered.filter((merchant) => merchant.subcategoryName === filters.subcategory)
-    }
+    const {
+      shopNameTH,
+      categoryName,
+      subcategoryName,
+      facilities,
+      highlightText,
+      recommendedItems,
+      addressProvinceName,
+      addressDistrictName,
+    } = merchant
+    const searchFilter = state.search
+      ? check(shopNameTH) ||
+        check(categoryName) ||
+        check(subcategoryName) ||
+        check(facilities) ||
+        check(highlightText) ||
+        check(recommendedItems) ||
+        check(addressProvinceName) ||
+        check(addressDistrictName)
+      : true
 
-    return filtered
-  }
+    return (
+      categoryFilter &&
+      subcategoryFilter &&
+      provinceFilter &&
+      priceRangeFilter &&
+      searchFilter
+    )
+  })
 
-  const filteredMerchants = filterMerchant(merchants, state)
+  console.log(filteredMerchants)
   return (
     <Container>
-      <Title>ผลการค้นหา{!category ? ' ' : ` ${category} `}ทั้งหมด</Title>
+      <Title>{`ผลการค้นหา ${category ? category : ''} ${
+        category && search ? ' , ' : ''
+      }  ${search ? search : ''} ทั้งหมด`}</Title>
       <Flex>
         <FilterCard {...{ filters }} />
-        <MerchantList {...{ merchants }} />
+        <MerchantList {...{ merchants: filteredMerchants }} />
       </Flex>
+
+      <FilterSide {...{ filters }} />
     </Container>
   )
 }

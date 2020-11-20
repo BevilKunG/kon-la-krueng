@@ -16,6 +16,7 @@ const OptionRadio = styled.div`
 
 const RadioLabel = styled.span`
   padding: 0 8px;
+  font-size: 14px;
 `
 
 const CategoryFilter: FC<any> = ({ categories }) => {
@@ -44,7 +45,7 @@ const CategoryFilter: FC<any> = ({ categories }) => {
         </label>
 
         {categories.map((category) => (
-          <label key={`category-${category}`}>
+          <label key={`category-filter-${category}`}>
             <input
               type="radio"
               name="category"

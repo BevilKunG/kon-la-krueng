@@ -1,6 +1,6 @@
 import { FC, useContext } from 'react'
 import { FilterContext } from '../../lib/FilterContext'
-import { CategoryFilter, SubcategoryFilter } from './'
+import { CategoryFilter, SubcategoryFilter, ProvinceFilter, PriceRangeFilter } from './'
 import styled from 'styled-components'
 
 const Container = styled.div`
@@ -8,7 +8,7 @@ const Container = styled.div`
   width: 22rem;
   background-color: white;
   padding: 1rem;
-  border: 1px solid #A0AEC0;
+  border: 1px solid #a0aec0;
 
   @media (min-width: 768px) {
     & {
@@ -21,7 +21,7 @@ const Container = styled.div`
 const FilterCard: FC<any> = ({ filters }) => {
   const { state } = useContext(FilterContext)
 
-  const { categories } = filters
+  const { categories, provinces, priceRange } = filters
   const subcategories = {}
   categories.forEach(
     ({ name, subcategories: value }) => (subcategories[name] = value)
@@ -30,6 +30,10 @@ const FilterCard: FC<any> = ({ filters }) => {
   return (
     <Container>
       <CategoryFilter {...{ categories: categories.map(({ name }) => name) }} />
+
+      <ProvinceFilter {...{ provinces }} />
+
+      <PriceRangeFilter {...{ priceRange }} />
 
       {state.category ? <SubcategoryFilter {...{ subcategories }} /> : null}
     </Container>

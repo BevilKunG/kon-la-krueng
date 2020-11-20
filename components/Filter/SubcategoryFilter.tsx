@@ -16,6 +16,7 @@ const OptionRadio = styled.div`
 
 const RadioLabel = styled.span`
   padding: 0 8px;
+  font-size: 14px;
 `
 
 const SubcategoryFilter: FC<any> = ({ subcategories }) => {
@@ -42,7 +43,7 @@ const SubcategoryFilter: FC<any> = ({ subcategories }) => {
         </label>
 
         {subcategories[state.category].map((subcategory) => (
-          <label key={`subcategory-${subcategory}`}>
+          <label key={`subcategory-filter-${subcategory}`}>
             <input
               type="radio"
               name="subcategory"

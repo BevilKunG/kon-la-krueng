@@ -5,6 +5,9 @@ interface IFilterState {
   subcategory: string
   province: string
   priceLevel: number
+  word: string
+  search: string
+  sideShow: boolean
 }
 
 interface IFilterContext {
@@ -26,6 +29,9 @@ const initState: IFilterState = {
   subcategory: null,
   province: null,
   priceLevel: null,
+  word: '',
+  search: null,
+  sideShow: false
 }
 
 const reducer: Reducer<IFilterState, Partial<IFilterState>> = (
