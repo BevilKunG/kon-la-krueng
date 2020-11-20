@@ -9,6 +9,7 @@ const Title = styled.h1`
 `
 
 const Select = styled.select`
+  width: 100%;
 `
 
 const PriceRangeFilter: FC<any> = ({ priceRange }) => {

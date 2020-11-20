@@ -1,7 +1,6 @@
 import { FC, useContext, ChangeEvent } from 'react'
 import { FilterContext } from '../../lib/FilterContext'
 import styled from 'styled-components'
-import { LocationOn } from '@styled-icons/material/LocationOn'
 
 const Title = styled.h1`
   font-family: 'IBM Plex Sans Thai SemiBold';
@@ -9,11 +8,8 @@ const Title = styled.h1`
   letter-spacing: -0.02em;
 `
 
-const Wrap = styled.div`
-  position: relative;
-`
-
 const Select = styled.select`
+  width: 100%;
 `
 
 const ProvinceFilter: FC<any> = ({ provinces }) => {

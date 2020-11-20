@@ -1,6 +1,6 @@
 import { FC, useContext } from 'react'
 import { FilterContext } from '../lib/FilterContext'
-import { FilterCard } from './Filter'
+import { FilterCard, FilterSide } from './Filter'
 import { MerchantList } from './Merchant'
 import styled from 'styled-components'
 
@@ -56,25 +56,37 @@ const Content: FC<any> = ({ data }) => {
       ? merchant.priceLevel === state.priceLevel
       : true
 
-    // const skipSearchs = ['coverImageId', 'priceLevel', 'isOpen']
-    // const searchFilter = state.search
-    //   ? Object.entries(merchant)
-    //       .filter(([key]) => !skipSearchs.includes(key))
-    //       .reduce((acc, [, value]) => {
-    //         console.log(value)
-    //         acc ||
-    //           value
-    //             .toString()
-    //             .toLowerCase()
-    //             .includes(state.search.toLowerCase())
-    //       }, false)
-    //   : null
-    // console.log(searchFilter)
+    const check = (value) => {
+      return value.toString().toLowerCase().includes(state.search.toLowerCase())
+    }
+
+    const {
+      shopNameTH,
+      categoryName,
+      subcategoryName,
+      facilities,
+      highlightText,
+      recommendedItems,
+      addressProvinceName,
+      addressDistrictName,
+    } = merchant
+    const searchFilter = state.search
+      ? check(shopNameTH) ||
+        check(categoryName) ||
+        check(subcategoryName) ||
+        check(facilities) ||
+        check(highlightText) ||
+        check(recommendedItems) ||
+        check(addressProvinceName) ||
+        check(addressDistrictName)
+      : true
 
     return (
-      categoryFilter && subcategoryFilter && provinceFilter && priceRangeFilter
-      // &&
-      // searchFilter
+      categoryFilter &&
+      subcategoryFilter &&
+      provinceFilter &&
+      priceRangeFilter &&
+      searchFilter
     )
   })
 
@@ -88,6 +100,8 @@ const Content: FC<any> = ({ data }) => {
         <FilterCard {...{ filters }} />
         <MerchantList {...{ merchants: filteredMerchants }} />
       </Flex>
+
+      <FilterSide {...{ filters }} />
     </Container>
   )
 }

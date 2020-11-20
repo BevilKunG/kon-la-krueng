@@ -1,6 +1,7 @@
 import { ChangeEvent, FC, useContext } from 'react'
 import styled from 'styled-components'
 import { FilterContext } from '../lib/FilterContext'
+import { Search } from '@styled-icons/material/Search'
 
 const Container = styled.div`
   display: flex;
@@ -57,11 +58,18 @@ const SearchInput = styled.input`
     font-size: 0.875rem;
   }
 `
+const SearchButton = styled.button``
+
+const SearchIcon = styled(Search)`
+  height: 1rem;
+  width: 1rem;
+`
 
 const Filter = styled.img`
   width: auto;
   height: 20px;
   margin-right: 1rem;
+  cursor: pointer;
 
   @media (min-width: 768px) {
     & {
@@ -76,7 +84,7 @@ const Navbar: FC<any> = ({ filters }) => {
   const handleProvince = (e: ChangeEvent<HTMLSelectElement>) => {
     const province = e.target.value
     dispatch({
-      province
+      province,
     })
   }
   return (
@@ -95,9 +103,12 @@ const Navbar: FC<any> = ({ filters }) => {
           <option value="พื้นที่ใกล้ฉัน">พื้นที่ใกล้ฉัน</option>
           <option value="สถานที่ทั้งหมด">สถานที่ทั้งหมด</option>
           {provinces.map((province) => (
-            <option key={`navbar-${province}`} value={province}>{province}</option>
+            <option key={`navbar-${province}`} value={province}>
+              {province}
+            </option>
           ))}
         </ProvinceSelect>
+
         <SearchInput
           type="text"
           placeholder="ค้นหา ชื่อ ร้านอาหาร และเครื่องดื่ม ร้านธงฟ้า ร้านค้า OTOP และสินค้าทั่วไป"
@@ -110,11 +121,20 @@ const Navbar: FC<any> = ({ filters }) => {
           }}
           value={state.word}
         />
+
+        <SearchButton
+          onClick={() => {
+            dispatch({ search: state.word })
+          }}
+        >
+          <SearchIcon />
+        </SearchButton>
       </SearchBar>
 
       <div>
         <Filter
           src={`${process.env.NEXT_PUBLIC_BASE_PATH}/images/filter.png`}
+          onClick={() => dispatch({ sideShow: true })}
         />
       </div>
     </Container>
