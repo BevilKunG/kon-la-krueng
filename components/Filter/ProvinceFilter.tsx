@@ -14,7 +14,6 @@ const Wrap = styled.div`
 `
 
 const Select = styled.select`
-  /* display: none; */
 `
 
 const ProvinceFilter: FC<any> = ({ provinces }) => {
@@ -29,11 +28,11 @@ const ProvinceFilter: FC<any> = ({ provinces }) => {
   return (
     <div>
       <Title>จังหวัด/ใกล้ฉัน</Title>
-      <Select onChange={handleProvince}>
+      <Select onChange={handleProvince} value={state.province}>
         <option value="nearMe">พื้นที่ใกล้ฉัน</option>
         <option value="all">สถานที่ทั้งหมด</option>
         {provinces.map((province) => (
-          <option value={province}>{province}</option>
+          <option key={province} value={province}>{province}</option>
         ))}
       </Select>
     </div>

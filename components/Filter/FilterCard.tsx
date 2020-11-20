@@ -27,7 +27,6 @@ const FilterCard: FC<any> = ({ filters }) => {
     ({ name, subcategories: value }) => (subcategories[name] = value)
   )
 
-  console.log(state)
   return (
     <Container>
       <CategoryFilter {...{ categories: categories.map(({ name }) => name) }} />

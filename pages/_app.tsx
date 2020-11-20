@@ -13,6 +13,10 @@ const GlobalStyle = createGlobalStyle`
     background-attachment: fixed;
     background-position: center;
   }
+
+  input, select, button {
+    font-family: 'IBM Plex Sans Thai', sans-serif;
+  }
 `
 
 const GlobalFont = createGlobalStyle`

@@ -9,7 +9,6 @@ const Title = styled.h1`
 `
 
 const Select = styled.select`
-  /* display: none; */
 `
 
 const PriceRangeFilter: FC<any> = ({ priceRange }) => {
@@ -18,7 +17,7 @@ const PriceRangeFilter: FC<any> = ({ priceRange }) => {
     const value = e.target.value !== 'all' ? e.target.value : null
     const priceLevel = parseInt(value) !== NaN ? parseInt(value) : null
     dispatch({
-      priceLevel,
+      priceLevel
     })
   }
 

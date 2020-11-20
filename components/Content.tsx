@@ -29,7 +29,7 @@ const Flex = styled.div`
 const Content: FC<any> = ({ data }) => {
   const { merchants, ...filters } = data
   const { state } = useContext(FilterContext)
-  const { category } = state
+  const { category, search } = state
 
   const { categories } = filters
   const subcategories = {}
@@ -54,13 +54,37 @@ const Content: FC<any> = ({ data }) => {
       ? merchant.priceLevel === state.priceLevel
       : true
 
-    return categoryFilter && subcategoryFilter && provinceFilter && priceRangeFilter
+    // const skipSearchs = ['coverImageId', 'priceLevel', 'isOpen']
+    // const searchFilter = state.search
+    //   ? Object.entries(merchant)
+    //       .filter(([key]) => !skipSearchs.includes(key))
+    //       .reduce((acc, [, value]) => {
+    //         console.log(value)
+    //         acc ||
+    //           value
+    //             .toString()
+    //             .toLowerCase()
+    //             .includes(state.search.toLowerCase())
+    //       }, false)
+    //   : null
+    // console.log(searchFilter)
+
+    return (
+      categoryFilter &&
+      subcategoryFilter &&
+      provinceFilter &&
+      priceRangeFilter 
+      // &&
+      // searchFilter
+    )
   })
 
   console.log(filteredMerchants)
   return (
     <Container>
-      <Title>ผลการค้นหา{!category ? ' ' : ` ${category} `}ทั้งหมด</Title>
+      <Title>{`ผลการค้นหา ${category ? category : ''} ${
+        category && search ? ' , ' : ''
+      }  ${search ? search : ''} ทั้งหมด`}</Title>
       <Flex>
         <FilterCard {...{ filters }} />
         <MerchantList {...{ merchants: filteredMerchants }} />

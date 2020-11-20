@@ -112,6 +112,8 @@ const Facilities = styled.div`
 
 const FacilityImage = styled.img`
   padding: 5px;
+  margin-right: 6px;
+  margin-bottom: 3px;
   border-radius: 20px;
   height: 1.1rem;
   width: 1.1rem;
@@ -146,8 +148,9 @@ const MerchantCard: FC<any> = ({ merchant }) => {
     priceLevel,
     highlightText,
     recommendedItems,
-    facilities
+    facilities,
   } = merchant
+
   return (
     <Card>
       <Image src={coverImageId} />
@@ -177,7 +180,7 @@ const MerchantCard: FC<any> = ({ merchant }) => {
           <RecommendedTitle>เมนูแนะนำ: </RecommendedTitle>
           {recommendedItems
             ? recommendedItems.map((item, index) => (
-                <RecommendedItem>{`${item}${
+                <RecommendedItem key={item}>{`${item}${
                   index !== recommendedItems.length - 1 ? ',' : ''
                 }`}</RecommendedItem>
               ))
@@ -185,7 +188,14 @@ const MerchantCard: FC<any> = ({ merchant }) => {
         </Recommended>
 
         <Facilities>
-            <FacilityImage src={`${process.env.NEXT_PUBLIC_BASE_PATH}/images/facilities/carpark.png`} />
+          {facilities
+            ? facilities.map((facility) => (
+                <FacilityImage
+                  key={facility}
+                  src={`${process.env.NEXT_PUBLIC_BASE_PATH}/images/facilities/${facility}.png`}
+                />
+              ))
+            : null}
         </Facilities>
       </Detail>
     </Card>
