@@ -1,7 +1,7 @@
 import { FC, useContext } from 'react'
 import { FilterContext } from '../lib/FilterContext'
 import { FilterCard } from './Filter'
-import MerchantList from './MerchantList'
+import { MerchantList } from './Merchant'
 import styled from 'styled-components'
 
 const Container = styled.div`
@@ -37,26 +37,33 @@ const Content: FC<any> = ({ data }) => {
     ({ name, subcategories: value }) => (subcategories[name] = value)
   )
 
-  const filterMerchant = (merchants, filters) => {
-    let filtered = merchants
-    if (filters.category) {
-      filtered = filtered.filter((merchant) => subcategories[filters.category].includes(merchant.subcategoryName))
-    }
+  const filteredMerchants = merchants.filter((merchant) => {
+    const categoryFilter = state.category
+      ? subcategories[state.category].includes(merchant.subcategoryName)
+      : true
 
-    if (filters.subcategory) {
-      filtered = filtered.filter((merchant) => merchant.subcategoryName === filters.subcategory)
-    }
+    const subcategoryFilter = state.subcategory
+      ? merchant.subcategoryName === state.subcategory
+      : true
 
-    return filtered
-  }
+    const provinceFilter = state.province
+      ? merchant.addressProvinceName === state.province
+      : true
 
-  const filteredMerchants = filterMerchant(merchants, state)
+    const priceRangeFilter = state.priceLevel
+      ? merchant.priceLevel === state.priceLevel
+      : true
+
+    return categoryFilter && subcategoryFilter && provinceFilter && priceRangeFilter
+  })
+
+  console.log(filteredMerchants)
   return (
     <Container>
       <Title>ผลการค้นหา{!category ? ' ' : ` ${category} `}ทั้งหมด</Title>
       <Flex>
         <FilterCard {...{ filters }} />
-        <MerchantList {...{ merchants }} />
+        <MerchantList {...{ merchants: filteredMerchants }} />
       </Flex>
     </Container>
   )

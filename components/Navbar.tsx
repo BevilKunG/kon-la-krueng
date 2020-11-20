@@ -48,7 +48,6 @@ const Filter = styled.img`
 `
 
 const Navbar: FC<any> = ({ filters }) => {
-  console.log(filters)
   return (
     <Container>
       <div>
@@ -57,7 +56,7 @@ const Navbar: FC<any> = ({ filters }) => {
       </div>
 
       <div>
-        <SearchInput type="text" placeholder="ค้นหา ชื่อ ร้านอาหาร และเครื่องดื่ม ร้านธงฟ้า ร้านค้า OTOP และสินค้าทั่วไป" />
+        <SearchInput type="search" placeholder="ค้นหา ชื่อ ร้านอาหาร และเครื่องดื่ม ร้านธงฟ้า ร้านค้า OTOP และสินค้าทั่วไป" />
       </div>
 
       <div>

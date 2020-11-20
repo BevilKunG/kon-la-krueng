@@ -16,6 +16,7 @@ const OptionRadio = styled.div`
 
 const RadioLabel = styled.span`
   padding: 0 8px;
+  font-size: 14px;
 `
 
 const SubcategoryFilter: FC<any> = ({ subcategories }) => {
