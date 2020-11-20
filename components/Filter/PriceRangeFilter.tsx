@@ -28,7 +28,7 @@ const PriceRangeFilter: FC<any> = ({ priceRange }) => {
         <option disabled>กรุณาเลือก</option>
         <option value="all">ทั้งหมด</option>
         {priceRange.map((range, index) => (
-          <option value={index + 1}>{range}</option>
+          <option key={`price-range-filter-${range}`} value={index + 1}>{range}</option>
         ))}
       </Select>
     </div>

@@ -180,7 +180,7 @@ const MerchantCard: FC<any> = ({ merchant }) => {
           <RecommendedTitle>เมนูแนะนำ: </RecommendedTitle>
           {recommendedItems
             ? recommendedItems.map((item, index) => (
-                <RecommendedItem key={item}>{`${item}${
+                <RecommendedItem key={`recommended-item-${item}`}>{`${item}${
                   index !== recommendedItems.length - 1 ? ',' : ''
                 }`}</RecommendedItem>
               ))
@@ -191,7 +191,7 @@ const MerchantCard: FC<any> = ({ merchant }) => {
           {facilities
             ? facilities.map((facility) => (
                 <FacilityImage
-                  key={facility}
+                  key={`facility-${facility}`}
                   src={`${process.env.NEXT_PUBLIC_BASE_PATH}/images/facilities/${facility}.png`}
                 />
               ))

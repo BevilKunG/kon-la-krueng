@@ -46,9 +46,11 @@ const Content: FC<any> = ({ data }) => {
       ? merchant.subcategoryName === state.subcategory
       : true
 
-    const provinceFilter = state.province
-      ? merchant.addressProvinceName === state.province
-      : true
+    const provinceFilter =
+      state.province &&
+      !['พื้นที่ใกล้ฉัน', 'สถานที่ทั้งหมด'].includes(state.province)
+        ? merchant.addressProvinceName === state.province
+        : true
 
     const priceRangeFilter = state.priceLevel
       ? merchant.priceLevel === state.priceLevel
@@ -70,10 +72,7 @@ const Content: FC<any> = ({ data }) => {
     // console.log(searchFilter)
 
     return (
-      categoryFilter &&
-      subcategoryFilter &&
-      provinceFilter &&
-      priceRangeFilter 
+      categoryFilter && subcategoryFilter && provinceFilter && priceRangeFilter
       // &&
       // searchFilter
     )

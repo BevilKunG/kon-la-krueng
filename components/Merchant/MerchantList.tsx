@@ -10,13 +10,37 @@ const Container = styled.div`
   gap: 0.5rem;
 `
 
+const NotFound = styled.div`
+  text-align: center;
+  margin-top: 5rem;
+`
+
+const NotFoundTitle = styled.h1`
+  font-family: 'IBM Plex Sans Thai Bold';
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02rem;
+`
+
+const NotFoundSubtitle = styled.p`
+  font-size: 1rem;
+  letter-spacing: -0.02rem;
+  margin-top: 1rem;
+`
+
+
+
 const MerchantList: FC<any> = ({ merchants }) => {
-  // console.log(merchants)
   return (
     <Container>
-      {merchants.map((merchant) => (
-        <MerchantCard key={merchant.shopNameTH} {...{ merchant }} />
-      ))}
+      {merchants.length !== 0 ? merchants.map((merchant) => (
+        <MerchantCard key={`merchant-card-${merchant.shopNameTH}`} {...{ merchant }} />
+      )) : (
+        <NotFound>
+          <NotFoundTitle>ไม่พบสถานที่ที่คุณกำลังหา</NotFoundTitle>
+          <NotFoundSubtitle>ร้านค้าที่ท่านค้นหาอาจไม่ได้เข้าร่วมโครงการ คนละครึ่ง</NotFoundSubtitle>
+        </NotFound>
+      )}
     </Container>
   )
 }

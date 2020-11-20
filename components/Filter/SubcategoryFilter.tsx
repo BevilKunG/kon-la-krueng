@@ -43,7 +43,7 @@ const SubcategoryFilter: FC<any> = ({ subcategories }) => {
         </label>
 
         {subcategories[state.category].map((subcategory) => (
-          <label key={subcategory}>
+          <label key={`subcategory-filter-${subcategory}`}>
             <input
               type="radio"
               name="subcategory"

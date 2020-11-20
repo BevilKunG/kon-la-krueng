@@ -74,7 +74,7 @@ const Navbar: FC<any> = ({ filters }) => {
   const { state, dispatch } = useContext(FilterContext)
   const { provinces } = filters
   const handleProvince = (e: ChangeEvent<HTMLSelectElement>) => {
-    const province = !['nearMe', 'all'].includes(e.target.value) ? e.target.value : null
+    const province = e.target.value
     dispatch({
       province
     })
@@ -92,10 +92,10 @@ const Navbar: FC<any> = ({ filters }) => {
 
       <SearchBar>
         <ProvinceSelect onChange={handleProvince} value={state.province}>
-          <option value="nearMe">พื้นที่ใกล้ฉัน</option>
-          <option value="all">พื้นที่ทั้งหมด</option>
+          <option value="พื้นที่ใกล้ฉัน">พื้นที่ใกล้ฉัน</option>
+          <option value="สถานที่ทั้งหมด">สถานที่ทั้งหมด</option>
           {provinces.map((province) => (
-            <option value={province}>{province}</option>
+            <option key={`navbar-${province}`} value={province}>{province}</option>
           ))}
         </ProvinceSelect>
         <SearchInput

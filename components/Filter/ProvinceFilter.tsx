@@ -19,7 +19,7 @@ const Select = styled.select`
 const ProvinceFilter: FC<any> = ({ provinces }) => {
   const { state, dispatch } = useContext(FilterContext)
   const handleProvince = (e: ChangeEvent<HTMLSelectElement>) => {
-    const province = !['nearMe', 'all'].includes(e.target.value) ? e.target.value : null
+    const province = e.target.value
     dispatch({
       province
     })
@@ -29,10 +29,10 @@ const ProvinceFilter: FC<any> = ({ provinces }) => {
     <div>
       <Title>จังหวัด/ใกล้ฉัน</Title>
       <Select onChange={handleProvince} value={state.province}>
-        <option value="nearMe">พื้นที่ใกล้ฉัน</option>
-        <option value="all">สถานที่ทั้งหมด</option>
+        <option value="พื้นที่ใกล้ฉัน">พื้นที่ใกล้ฉัน</option>
+        <option value="สถานที่ทั้งหมด">สถานที่ทั้งหมด</option>
         {provinces.map((province) => (
-          <option key={province} value={province}>{province}</option>
+          <option key={`province-filter-${province}`} value={province}>{province}</option>
         ))}
       </Select>
     </div>

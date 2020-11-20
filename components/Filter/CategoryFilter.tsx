@@ -45,7 +45,7 @@ const CategoryFilter: FC<any> = ({ categories }) => {
         </label>
 
         {categories.map((category) => (
-          <label key={category}>
+          <label key={`category-filter-${category}`}>
             <input
               type="radio"
               name="category"
