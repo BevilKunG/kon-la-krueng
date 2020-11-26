@@ -2,6 +2,7 @@ import { FC, useContext } from 'react'
 import { FilterContext } from '../../lib/FilterContext'
 import { CategoryFilter, SubcategoryFilter, ProvinceFilter, PriceRangeFilter } from './'
 import styled from 'styled-components'
+import { Filters } from '../../lib/types'
 
 const Container = styled.div`
   display: none;
@@ -18,7 +19,11 @@ const Container = styled.div`
   }
 `
 
-const FilterCard: FC<any> = ({ filters }) => {
+interface IFilterCardProp {
+  filters: Filters
+}
+
+const FilterCard: FC<IFilterCardProp> = ({ filters }) => {
   const { state } = useContext(FilterContext)
 
   const { categories, provinces, priceRange } = filters

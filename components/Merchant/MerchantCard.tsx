@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import styled from 'styled-components'
+import { Merchant } from '../../lib/types'
 
 const Card = styled.div`
   background-color: white;
@@ -120,12 +121,24 @@ const FacilityImage = styled.img`
   border: 1px solid #6cbf5f;
 `
 
-const StatusTag: FC<any> = ({ isOpen }) => {
+interface IMerchantCardProp {
+  merchant: Merchant
+}
+
+interface IPriceLevelProp {
+  priceLevel: number
+}
+
+interface IStatusTagProp {
+  isOpen: string
+}
+
+const StatusTag: FC<IStatusTagProp> = ({ isOpen }) => {
   const text = isOpen === 'Y' ? 'เปิดอยู่' : 'ปิดแล้ว'
   return <Tag active={isOpen === 'Y'}>{text}</Tag>
 }
 
-const PriceLevel: FC<any> = ({ priceLevel }) => {
+const PriceLevel: FC<IPriceLevelProp> = ({ priceLevel }) => {
   const levels = [1, 2, 3, 4]
   return (
     <>
@@ -137,7 +150,7 @@ const PriceLevel: FC<any> = ({ priceLevel }) => {
   )
 }
 
-const MerchantCard: FC<any> = ({ merchant }) => {
+const MerchantCard: FC<IMerchantCardProp> = ({ merchant }) => {
   const {
     coverImageId,
     shopNameTH,

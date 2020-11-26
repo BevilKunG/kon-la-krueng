@@ -1,8 +1,13 @@
 import { NextPage, GetStaticProps } from 'next'
 import { Navbar, Breadcrumb, Content } from '../components'
 import { FilterProvider } from '../lib/FilterContext'
+import { Data } from '../lib/types'
 
-const IndexPage: NextPage<any> = ({ data }) => {
+interface IIndexProp {
+  data: Data
+}
+
+const IndexPage: NextPage<IIndexProp> = ({ data }) => {
   const { merchants, ...filters } = data
   return (
     <FilterProvider>

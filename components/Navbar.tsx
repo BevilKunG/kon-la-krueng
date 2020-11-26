@@ -2,6 +2,7 @@ import { ChangeEvent, FC, useContext } from 'react'
 import styled from 'styled-components'
 import { FilterContext } from '../lib/FilterContext'
 import { Search } from '@styled-icons/material/Search'
+import { Filters } from '../lib/types'
 
 const Container = styled.div`
   display: flex;
@@ -78,7 +79,11 @@ const Filter = styled.img`
   }
 `
 
-const Navbar: FC<any> = ({ filters }) => {
+interface INavbarProp {
+  filters: Filters
+}
+
+const Navbar: FC<INavbarProp> = ({ filters }) => {
   const { state, dispatch } = useContext(FilterContext)
   const { provinces } = filters
   const handleProvince = (e: ChangeEvent<HTMLSelectElement>) => {

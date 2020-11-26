@@ -1,6 +1,7 @@
 import { FC, useContext, ChangeEvent } from 'react'
 import { FilterContext } from '../../lib/FilterContext'
 import styled from 'styled-components'
+import { Subcategory } from '../../lib/types'
 
 const Title = styled.h1`
   font-family: 'IBM Plex Sans Thai SemiBold';
@@ -19,7 +20,11 @@ const RadioLabel = styled.span`
   font-size: 14px;
 `
 
-const SubcategoryFilter: FC<any> = ({ subcategories }) => {
+interface ISubcategoryFilter {
+  subcategories: any
+}
+
+const SubcategoryFilter: FC<ISubcategoryFilter> = ({ subcategories }) => {
   const { state, dispatch } = useContext(FilterContext)
   const handleSubcategory = (e: ChangeEvent<HTMLInputElement>) => {
     let subcategory = e.target.value !== 'all' ? e.target.value : null

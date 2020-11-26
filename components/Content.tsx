@@ -3,6 +3,7 @@ import { FilterContext } from '../lib/FilterContext'
 import { FilterCard, FilterSide } from './Filter'
 import { MerchantList } from './Merchant'
 import styled from 'styled-components'
+import { Data } from '../lib/types'
 
 const Container = styled.div`
   padding: 1rem;
@@ -26,7 +27,11 @@ const Flex = styled.div`
   align-items: flex-start;
 `
 
-const Content: FC<any> = ({ data }) => {
+interface IContentProp {
+  data: Data
+}
+
+const Content: FC<IContentProp> = ({ data }) => {
   const { merchants, ...filters } = data
   const { state } = useContext(FilterContext)
   const { category, search } = state

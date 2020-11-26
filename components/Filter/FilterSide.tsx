@@ -8,6 +8,7 @@ import {
 import { FilterContext } from '../../lib/FilterContext'
 import styled, { keyframes } from 'styled-components'
 import { KeyboardArrowLeft } from '@styled-icons/material/KeyboardArrowLeft'
+import { Filters } from '../../lib/types'
 
 const slideAnimation = keyframes`
   100% {
@@ -55,7 +56,11 @@ const FilterContainer = styled.div`
   padding: calc(24px + 1rem);
 `
 
-const FilterSide: FC<any> = ({ filters }) => {
+interface IFilterSideProp {
+  filters: Filters
+}
+
+const FilterSide: FC<IFilterSideProp> = ({ filters }) => {
   const { state, dispatch } = useContext(FilterContext)
   const { categories, provinces, priceRange } = filters
   const subcategories = {}
